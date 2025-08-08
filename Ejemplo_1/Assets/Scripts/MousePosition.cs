@@ -16,6 +16,9 @@ public class PanelMouseTracker : MonoBehaviour
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+
+        // Cargar datos existentes al iniciar
+        LoadPositionData();
     }
 
     private void Update()
@@ -55,5 +58,24 @@ public class PanelMouseTracker : MonoBehaviour
 
         File.WriteAllText(path, json);
         Debug.Log($"Datos guardados en: {path}");
+    }
+
+    private void LoadPositionData()
+    {
+        string path = Path.Combine(Application.streamingAssetsPath, "mouse_positions.json");
+
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            positionData = JsonUtility.FromJson<MousePositionData>(json);
+            Debug.Log($"Se cargaron {positionData.positions.Count} posiciones previas");
+        }
+    }
+
+    // Método para limpiar los datos actuales
+    public void ClearData()
+    {
+        positionData.positions.Clear();
+        Debug.Log("Datos limpiados");
     }
 }

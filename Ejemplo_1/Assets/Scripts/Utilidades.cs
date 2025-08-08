@@ -30,7 +30,7 @@ public static class Utilidades
     public static void GuardarPuntos(List<Punto2D> puntos)
     {
         string json = JsonUtility.ToJson(new ContainPunto { lista = puntos }, true);
-        string ruta = Path.Combine(Application.persistentDataPath, "puntos.json");
+        string ruta = Path.Combine(Application.streamingAssetsPath, "puntos.json");
         File.WriteAllText(ruta, json);
         Debug.Log("Puntos guardados en: " + ruta);
   
