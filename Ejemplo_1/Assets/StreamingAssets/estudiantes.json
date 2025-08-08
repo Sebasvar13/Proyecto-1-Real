@@ -1,0 +1,18 @@
+{
+    "lista": [
+        {
+            "nameP": "INSERTE SU NOMBRE",
+            "mailP": "INSERTE SU CORREO",
+            "dirP": "INSERTE SU DIRECCION",
+            "codeE": "INSERTE SU CODIGO",
+            "nameCarreraE": "INSERTE SU CARRERA"
+        },
+        {
+            "nameP": " dfgdfg",
+            "mailP": "dfgdfgfd",
+            "dirP": "dfgdfg",
+            "codeE": "dgfdfg",
+            "nameCarreraE": "dfgdfg"
+        }
+    ]
+}

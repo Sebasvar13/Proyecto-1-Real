@@ -22,7 +22,7 @@ public static class Utilidades
     public static void GuardarEstudiantes(List<Estudiante> estudiantes)
     {
         string json = JsonUtility.ToJson(new ContainEstudiante { lista = estudiantes }, true);
-        string ruta = Path.Combine(Application.persistentDataPath, "estudiantes.json");
+        string ruta = Path.Combine(Application.streamingAssetsPath, "estudiantes.json");
         File.WriteAllText(ruta, json);
         Debug.Log("Estudiantes guardados en: " + ruta);
     }
