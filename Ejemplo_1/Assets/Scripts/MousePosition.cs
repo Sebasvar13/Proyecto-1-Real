@@ -1,81 +1,69 @@
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using System.IO;
+using System.Collections.Generic;
 
-public class PanelMouseTracker : MonoBehaviour
+public class Position : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private RectTransform rectTransform;
-    private MousePositionData positionData = new MousePositionData();
-
-    [System.Serializable]
-    public class MousePositionData
-    {
-        public List<Vector2> positions = new List<Vector2>();
-    }
+    private bool MouseEncima = false;
+    private List<Vector2> mousePositions = new List<Vector2>();
+    private string filePath;
 
     private void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
+        
+        filePath = Path.Combine(Application.streamingAssetsPath, "mousePositions.json");
 
-        // Cargar datos existentes al iniciar
-        LoadPositionData();
+        
+        if (File.Exists(filePath))
+        {
+            string jsonData = File.ReadAllText(filePath);
+            MousePositionData data = JsonUtility.FromJson<MousePositionData>(jsonData);
+            mousePositions = data.positions;
+        }
     }
 
     private void Update()
     {
-        if (IsMouseOverPanel())
+        if (MouseEncima)
         {
-            Vector2 localPos;
-            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                rectTransform,
-                Input.mousePosition,
-                null,
-                out localPos))
-            {
-                // Agregar la posición actual a la lista
-                positionData.positions.Add(localPos);
-                Debug.Log($"Position on panel: {localPos}");
-            }
+            Vector2 mousePosition = Input.mousePosition;
+            mousePositions.Add(mousePosition);
+            print("Mouse sobre el panel: " + mousePosition);
         }
     }
 
-    private bool IsMouseOverPanel()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        Vector2 localMousePosition = rectTransform.InverseTransformPoint(Input.mousePosition);
-        return rectTransform.rect.Contains(localMousePosition);
+        MouseEncima = true;
     }
 
-    public void SaveDataManually()
+    public void OnPointerExit(PointerEventData eventData)
     {
-        string json = JsonUtility.ToJson(positionData, true);
-        string path = Path.Combine(Application.streamingAssetsPath, "mouse_positions.json");
-
-        // Asegurar que existe el directorio
-        if (!Directory.Exists(Application.streamingAssetsPath))
-        {
-            Directory.CreateDirectory(Application.streamingAssetsPath);
-        }
-
-        File.WriteAllText(path, json);
-        Debug.Log($"Datos guardados en: {path}");
+        MouseEncima = false;
+        GuardarJson();
     }
 
-    private void LoadPositionData()
+    private void GuardarJson()
     {
-        string path = Path.Combine(Application.streamingAssetsPath, "mouse_positions.json");
+        
+        MousePositionData data = new MousePositionData();
+        data.positions = mousePositions;
 
-        if (File.Exists(path))
-        {
-            string json = File.ReadAllText(path);
-            positionData = JsonUtility.FromJson<MousePositionData>(json);
-            Debug.Log($"Se cargaron {positionData.positions.Count} posiciones previas");
-        }
+        
+        string jsonData = JsonUtility.ToJson(data, true);
+
+        
+        File.WriteAllText(filePath, jsonData);
+        Debug.Log("Datos guardados en: " + filePath);
     }
 
-    // Método para limpiar los datos actuales
-    public void ClearData()
+    
+    [System.Serializable]
+    private class MousePositionData
     {
-        positionData.positions.Clear();
-        Debug.Log("Datos limpiados");
+        public List<Vector2> positions;
     }
+
+   
 }
