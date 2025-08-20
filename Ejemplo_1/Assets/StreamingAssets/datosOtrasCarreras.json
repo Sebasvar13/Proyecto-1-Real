@@ -1,0 +1,67 @@
+{
+    "estudiantes": [
+        {
+            "nameP": "Valentina",
+            "mailP": "sdfsdf",
+            "dirP": "sdfsdf",
+            "codeE": "sdfsdf",
+            "nameCarrera": "sdfsdf"
+        },
+        {
+            "nameP": "Carlos Pérez",
+            "mailP": "cperez@uao.edu.co",
+            "dirP": "avenida3#45-67",
+            "codeE": "21480",
+            "nameCarrera": "Administración de Empresas"
+        },
+        {
+            "nameP": "Juan Rodríguez",
+            "mailP": "jrodriguez@uao.edu.co",
+            "dirP": "carrera8#12-34",
+            "codeE": "21482",
+            "nameCarrera": "Diseño Gráfico"
+        },
+        {
+            "nameP": "Sofía Torres",
+            "mailP": "storres@uao.edu.co",
+            "dirP": "calle15#56-78",
+            "codeE": "21485",
+            "nameCarrera": "Contaduría Pública"
+        },
+        {
+            "nameP": "Camila Herrera",
+            "mailP": "cherrera@uao.edu.co",
+            "dirP": "calle22#45-67",
+            "codeE": "21487",
+            "nameCarrera": "Comunicación Social"
+        },
+        {
+            "nameP": "Paula Ríos",
+            "mailP": "prios@uao.edu.co",
+            "dirP": "carrera14#23-45",
+            "codeE": "21489",
+            "nameCarrera": "Psicología"
+        },
+        {
+            "nameP": "Carolina Castaño",
+            "mailP": "ccastano@uao.edu.co",
+            "dirP": "carrera15#12-34",
+            "codeE": "21493",
+            "nameCarrera": "Derecho"
+        },
+        {
+            "nameP": "Mónica Blanco",
+            "mailP": "mblanco@uao.edu.co",
+            "dirP": "avenida9#67-89",
+            "codeE": "21497",
+            "nameCarrera": "Administración de Empresas"
+        },
+        {
+            "nameP": "Sebastian",
+            "mailP": "sdfsdf",
+            "dirP": "sdfsdf",
+            "codeE": "sdfsdf",
+            "nameCarrera": "sdfsdf"
+        }
+    ]
+}
